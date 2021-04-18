@@ -1,23 +1,21 @@
-import React, {useState} from 'react';
-import { StyleSheet, Text, View,  } from 'react-native';
-import {AppLoading} from 'expo';
-import { bootstrap } from './src/bootstrap';
-
+import React, { useState } from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+import { AppLoading } from 'expo'
+import { AppNavigation } from './src/navigation/AppNavigation'
+import { bootstrap } from './src/bootstrap'
 
 export default function App() {
-
-  const [isReady, setIsReady] = useState(false);
+  const [isReady, setIsReady] = useState(false)
 
   if (!isReady) {
-    return <AppLoading 
-    onFinish={() => setIsReady(true)} 
-    onError={(err) => console.log(err)}
-    startAsync={bootstrap}/>;
+    return (
+      <AppLoading
+        startAsync={bootstrap}
+        onFinish={() => setIsReady(true)}
+        onError={err => console.log(err)}
+      />
+    )
   }
 
-  return (
-    <View >
-      <Text>hello</Text>
-    </View>
-  );
+  return <AppNavigation />
 }
